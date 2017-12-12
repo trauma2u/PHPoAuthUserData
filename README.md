@@ -20,7 +20,7 @@ Installation
 
 Added Korean Providers
 ---------------------
-- Kakao
+- Naver
 
 Provider: Naver
 ---------------------
