@@ -32,6 +32,6 @@ $extractor->getUniqueId(); // 19740816
 $extractor->getUsername(); // trauma2u
 $extractor->getFullName(); // 정양파
 $extractor->getEmail(); // trauma2u@naver.com
-$extractor->getImageUrl(); // https://phinf.pstatic.net/contact/5/2015/11/25/trauma2u_1448456272639.jpg
-$extractor->getExtras(); // nickname, enc_id, age, gender, birthday, etc.
+$extractor->getImageUrl(); // https://trauma2u.app/images/onion.jpg
+$extractor->getExtras(); // ['nickname', 'enc_id', 'age', 'gender', 'birthday']
 ```
