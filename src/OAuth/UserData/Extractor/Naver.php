@@ -39,6 +39,7 @@ class Naver extends LazyExtractor
             self::FIELD_UNIQUE_ID,
             self::FIELD_USERNAME,
             self::FIELD_FULL_NAME,
+            self::FIELD_EMAIL,
             self::FIELD_IMAGE_URL,
             self::FIELD_EXTRA
         );
@@ -59,6 +60,11 @@ class Naver extends LazyExtractor
         if (!isset($data['response']['email'])) return null;
         $exploded = explode('@', $data['response']['email']);
         return $exploded[0];
+    }
+
+    protected function emailNormalizer($data)
+    {
+        return isset($data['response']['email']) ? $data['response']['email'] : null;
     }
 
     protected function fullNameNormalizer($data)
