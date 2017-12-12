@@ -18,10 +18,6 @@ Installation
 }
 ```
 
-Added Korean Providers
----------------------
-- Naver
-
 Provider: Naver
 ---------------------
 ```php
