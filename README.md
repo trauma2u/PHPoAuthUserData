@@ -14,7 +14,7 @@ Installation
         }
     ],
     "require": {
-        "oryzone/oauth-user-data": "~1.0@dev"
+        "oryzone/oauth-user-data": "dev-master"
     }
 }
 ```
