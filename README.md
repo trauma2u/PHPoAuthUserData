@@ -18,6 +18,20 @@ Installation
 }
 ```
 
+Provider: Kakao
+---------------------
+```php
+/** @var \OAuth\Common\Service\ServiceInterface $kakaoService */
+$extractorFactory = new \OAuth\UserData\ExtractorFactory();
+$extractor = $extractorFactory->get($kakaoService);
+$extractor->getUniqueId(); // 19740816
+$extractor->getEmail(); // trauma2u@gmail.com
+$extractor->getImageUrl(); // https://trauma2u.app/images/onion.jpg
+$extractor->isEmailVerified(); // true
+$extractor->getExtras(); // ['nickname', 'thumbnail_image', ...]
+$extractor->getExtra('nickname'); // 다마네기
+```
+
 Provider: Naver
 ---------------------
 ```php
