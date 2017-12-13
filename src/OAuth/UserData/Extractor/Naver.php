@@ -41,6 +41,7 @@ class Naver extends LazyExtractor
             self::FIELD_FULL_NAME,
             self::FIELD_EMAIL,
             self::FIELD_IMAGE_URL,
+            self::FIELD_VERIFIED_EMAIL,
             self::FIELD_EXTRA
         );
     }
@@ -75,6 +76,11 @@ class Naver extends LazyExtractor
     protected function imageUrlNormalizer($data)
     {
         return isset($data['response']['profile_image']) ? $data['response']['profile_image'] : null;
+    }
+
+    protected function verifiedEmailNormalizer($data)
+    {
+        return isset($data['response']['email']);
     }
 
     protected function extraNormalizer($data)
