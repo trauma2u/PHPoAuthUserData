@@ -1,4 +1,4 @@
-PHPoAuthLib
+PHPoAuthUserData
 ===========
 The Forked Project of [Oryzone/PHPoAuthUserData](https://github.com/Oryzone/PHPoAuthUserData) for Korean Providers
 
