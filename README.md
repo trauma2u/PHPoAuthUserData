@@ -29,7 +29,7 @@ $extractor->getUsername(); // trauma2u
 $extractor->getFullName(); // 정양파
 $extractor->getEmail(); // trauma2u@naver.com
 $extractor->getImageUrl(); // https://trauma2u.app/images/onion.jpg
-$extractor->getVerifiedEmail(); // true
+$extractor->isEmailVerified(); // true
 $extractor->getExtras(); // ['nickname', 'enc_id', 'age', 'gender', 'birthday', ...]
 $extractor->getExtra('nickname'); // 다마네기
 ```
