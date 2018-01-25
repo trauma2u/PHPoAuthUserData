@@ -20,7 +20,7 @@ use OAuth\UserData\Utils\StringUtils;
  */
 class Facebook extends LazyExtractor
 {
-    const REQUEST_PROFILE = '/me?fields=id,name,email,picture.width(240).height(240),gender';
+    const REQUEST_PROFILE = '/me?locale=ko_KR&fields=id,name,email,picture.width(240).height(240),gender';
 
     /**
      * Constructor
