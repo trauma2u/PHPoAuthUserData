@@ -20,33 +20,30 @@ use OAuth\UserData\Utils\StringUtils;
  */
 class Facebook extends LazyExtractor
 {
-
-    /**
-     * Request contants
-     */
-    const REQUEST_PROFILE = '/me';
-    const REQUEST_IMAGE = '/me/picture?type=large&redirect=false';
+    const REQUEST_PROFILE = '/me?fields=id,name,email,picture.width(240).height(240),gender';
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        parent::__construct(self::getLoadersMap(), self::getNormalizersMap(), self::getAllFields());
+        parent::__construct(
+            self::getDefaultLoadersMap(),
+            self::getDefaultNormalizersMap(),
+            self::getSupportedFields()
+        );
     }
 
-    protected static function getLoadersMap()
+    protected static function getSupportedFields()
     {
-        return array_merge(self::getDefaultLoadersMap(), array(
-            self::FIELD_IMAGE_URL => 'image',
-        ));
-    }
-
-    public static function getNormalizersMap()
-    {
-        return array_merge(self::getDefaultNormalizersMap(), array(
-            self::FIELD_IMAGE_URL => null,
-        ));
+        return array(
+            self::FIELD_UNIQUE_ID,
+            self::FIELD_FULL_NAME,
+            self::FIELD_EMAIL,
+            self::FIELD_IMAGE_URL,
+            self::FIELD_VERIFIED_EMAIL,
+            self::FIELD_EXTRA
+        );
     }
 
     protected function profileLoader()
@@ -54,34 +51,9 @@ class Facebook extends LazyExtractor
         return json_decode($this->service->request(self::REQUEST_PROFILE), true);
     }
 
-    protected function imageLoader()
-    {
-        $rawPicture = json_decode($this->service->request(self::REQUEST_IMAGE), true);
-        if (isset($rawPicture['data'], $rawPicture['data']['url'])) {
-            return $rawPicture['data']['url'];
-        }
-
-        return null;
-    }
-
     protected function uniqueIdNormalizer($data)
     {
         return $data['id'];
-    }
-
-    protected function usernameNormalizer($data)
-    {
-        return isset($data['username']) ? $data['username'] : null;
-    }
-
-    protected function firstNameNormalizer($data)
-    {
-        return isset($data['first_name']) ? $data['first_name'] : null;
-    }
-
-    protected function lastNameNormalizer($data)
-    {
-        return isset($data['last_name']) ? $data['last_name'] : null;
     }
 
     protected function fullNameNormalizer($data)
@@ -94,44 +66,23 @@ class Facebook extends LazyExtractor
         return isset($data['email']) ? $data['email'] : null;
     }
 
-    protected function descriptionNormalizer($data)
+    protected function imageUrlNormalizer($data)
     {
-        return isset($data['bio']) ? $data['bio'] : null;
-    }
-
-    protected function profileUrlNormalizer($data)
-    {
-        return isset($data['link']) ? $data['link'] : null;
-    }
-
-    protected function locationNormalizer($data)
-    {
-        return isset($data['location']['name']) ? $data['location']['name'] : null;
-    }
-
-    protected function websitesNormalizer($data)
-    {
-        return isset($data['website']) ? StringUtils::extractUrls($data['website']) : array();
+        return isset($data['picture']['data']['url']) ? $data['picture']['data']['url'] : null;
     }
 
     public function verifiedEmailNormalizer()
     {
-        return true; // Facebook users who have access to Open Graph and OAuth always have a verified email
+        return true;
     }
 
     protected function extraNormalizer($data)
     {
         return ArrayUtils::removeKeys($data, array(
             'id',
-            'username',
-            'first_name',
-            'last_name',
             'name',
             'email',
-            'bio',
-            'link',
-            'location',
-            'website',
+            'picture',
         ));
     }
 }
