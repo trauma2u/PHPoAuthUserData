@@ -18,6 +18,21 @@ Installation
 }
 ```
 
+Provider: Facebook
+---------------------
+```php
+/** @var \OAuth\Common\Service\ServiceInterface $facebookService */
+$extractorFactory = new \OAuth\UserData\ExtractorFactory();
+$extractor = $extractorFactory->get($facebookService);
+$extractor->getUniqueId(); // 19740816
+$extractor->getFullName(); // 정양파
+$extractor->getEmail(); // trauma2u@gmail.com
+$extractor->getImageUrl(); // https://trauma2u.app/images/onion.jpg
+$extractor->isEmailVerified(); // true
+$extractor->getExtras(); // ['gender', ...]
+$extractor->getExtra('gender'); // 남성
+```
+
 Provider: Kakao
 ---------------------
 ```php
