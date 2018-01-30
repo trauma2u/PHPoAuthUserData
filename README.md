@@ -20,7 +20,8 @@ Installation
 
 Provider: Facebook
 ---------------------
-Compatible with Graph API v2.11
+- Compatible with Graph API v2.11
+- Set locale to ko_KR
 ```php
 /** @var \OAuth\Common\Service\ServiceInterface $facebookService */
 $extractorFactory = new \OAuth\UserData\ExtractorFactory();
