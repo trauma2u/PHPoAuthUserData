@@ -20,6 +20,7 @@ Installation
 
 Provider: Facebook
 ---------------------
+Graph API v2.11
 ```php
 /** @var \OAuth\Common\Service\ServiceInterface $facebookService */
 $extractorFactory = new \OAuth\UserData\ExtractorFactory();
